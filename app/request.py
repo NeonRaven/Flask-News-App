@@ -1,10 +1,7 @@
 import json
 import urllib.request
 
-# from newsapi import NewsApiClient
-
 from .config import Config
-from .models import Articles
 from .models import Sources
 
 api_key = None
@@ -20,10 +17,11 @@ def generate_article_templates(number, tag=None):
         all_articles.append({'source': f'source-{tag}{x}',
                              'title': f'title-{tag}{x}',
                              'description': f'description-{tag}{x}',
+                             'content': f'content-{tag}{x}',
                              'author': f'author-{tag}{x}',
                              'urlToImage': f'urlToImage-{tag}{x}',
                              'publishedAt': f'publishedAt-{tag}{x}',
-                             'url': f'url-{tag}{x}'})
+                             'url': f'/article/{x}'})
     return all_articles
 
 
@@ -123,3 +121,8 @@ def process_sources(source_list):
             news_source_object = Sources(name, description, url)
             news_source_result.append(news_source_object)
     return news_source_result
+
+
+def get_article(article_id):
+    return generate_article_templates(1, article_id)[0]
+

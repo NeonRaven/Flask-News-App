@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template
-from .request import get_news_source, publishedArticles, randomArticles, topHeadlines
+from .request import get_news_source, publishedArticles, randomArticles, topHeadlines, get_article
 
 
 @app.route('/')
@@ -36,3 +36,10 @@ def business(tag):
     sources = topHeadlines(tag)
 
     return render_template('category.html', sources=sources)
+
+
+@app.route('/article/<article_id>')
+def article(article_id):
+    news_article = get_article(article_id)
+
+    return render_template('article.html', article=news_article)

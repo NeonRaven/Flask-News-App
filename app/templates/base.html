@@ -9,8 +9,14 @@
     <link href="{{ url_for('static', filename='/favicon.ico') }}" rel="icon">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Overpass">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!--  bootstrap  -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+    <!--  font awesome  -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/font-awesome.all.min.css') }}">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
     <title>News Hub</title>
 </head>
@@ -104,8 +110,15 @@
 
     {% endblock %}
 
+<!--existing external js files
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>-->
+
+<!--Internally hosted -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+
 </body>
 </html>

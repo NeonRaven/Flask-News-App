@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{#
+  requires dict with keys:
+    - title
+    - desc
+    - author
+    - p_date
+    - img
+    - source
+
+#}
+
+<h2><b> {{ title }} </b></h2>
+
+<p class="source-body">{{ p_date }}</p>
+<p class="source-body">{{ desc }}</p>
+
+<img src="{{ img }}" alt="{{ title }}">
+<p class="source-body">{{ desc }}</p>
+
+
+
+{% endblock %}

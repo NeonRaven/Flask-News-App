@@ -2,7 +2,6 @@ import json
 import urllib.request
 
 from .config import Config
-from .models import Sources
 
 api_key = None
 base_url = None

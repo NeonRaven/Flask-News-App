@@ -1,17 +1,16 @@
-class Sources:
-    def __init__(self, name, description, url):
-        self.name=name,
-        self.description=description
-        self.url=url
-        
-class Articles:
-    '''Define article model'''
-    def __init__(self, source, author, title, description, url, urlToImage, publishedAt):
-        self.source = source
-        self.author = author
-        self.title = title
-        self.description = description
-        self.url = url
-        self.urlToImage = urlToImage
-        self.publishedAt = publishedAt
+from app import db
 
+
+class Article(db.Model):
+    __tablename__ = 'Article'
+    id = db.Column(db.Integer, primary_key=True)
+    source = db.Column(db.String(512), nullable=True)
+    title = db.Column(db.String(1024), nullable=False)
+    desc = db.Column(db.String(1024), nullable=True)
+    author = db.Column(db.String(512), nullable=False)
+    img = db.Column(db.String(1024), nullable=True)
+    p_date = db.Column(db.DateTime, nullable=True)
+    content = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return f'<Title {self.title}>'

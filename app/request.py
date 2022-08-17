@@ -1,5 +1,6 @@
 import json
 import urllib.request
+from .models import Article
 
 from .config import Config
 
@@ -12,7 +13,7 @@ base_source_list = None
 
 def generate_article_templates(number, tag=None):
     all_articles = []
-    for x in range(1, number+1):
+    for x in range(1, number + 1):
         all_articles.append({'source': f'source-{tag}{x}',
                              'title': f'title-{tag}{x}',
                              'description': f'description-{tag}{x}',
@@ -22,6 +23,19 @@ def generate_article_templates(number, tag=None):
                              'publishedAt': f'publishedAt-{tag}{x}',
                              'url': f'/article/{x}'})
     return all_articles
+
+
+def get_article_from_db(article_id):
+    article = Article.query.filter_by(id=article_id).first()
+
+    return {'source': article.source,
+            'title': article.title,
+            'description': article.desc,
+            'content': article.content,
+            'author': article.author,
+            'urlToImage': article.img,
+            'publishedAt': article.p_date,
+            'url': f'/article/{article.id}'}
 
 
 def zip_content(articles):
@@ -124,4 +138,3 @@ def process_sources(source_list):
 
 def get_article(article_id):
     return generate_article_templates(1, article_id)[0]
-

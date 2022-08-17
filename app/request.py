@@ -129,10 +129,6 @@ def process_sources(source_list):
         name = news_source_item.get('name')
         description = news_source_item.get('description')
         url = news_source_item.get('url')
-
-        if name:
-            news_source_object = Sources(name, description, url)
-            news_source_result.append(news_source_object)
     return news_source_result
 
 

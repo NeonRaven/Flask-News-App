@@ -3,7 +3,6 @@
 {% block content %}
 
 <div class="container-fluid landing">
-<h1>{{ title }}</h1>
     <div class="row">
         {% for article in articles %}
             <div class="col-md-4 d-flex justify-content-center">
@@ -12,8 +11,7 @@
 
                     <img src="{{ url_for('static', filename= article.img ) }}" class="card-img image-fluid" alt="...">
                     <div class="card-body">
-<!--                        <a href="{{ article.url }}"> -->
-                        <a href="/article/{{ article.id }}">
+                        <a href="{{ article.url }}">
                             <h2 class="card-title"><b> {{ article.title }} </b></h2>
                         </a>
                         <p class="card-text">{{ article.desc }}</p>

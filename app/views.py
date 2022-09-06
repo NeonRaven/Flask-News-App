@@ -1,13 +1,16 @@
 from app import app
 from flask import render_template
-from .request import get_news_source, publishedArticles, randomArticles, topHeadlines, get_article
+from .request import get_news_source, publishedArticles, randomArticles, topHeadlines, get_article, generate_article_templates, get_tags, get_article_from_db
 
 
 @app.route('/')
 def home():
     articles = publishedArticles()
+    sources = get_news_source()
+    tags = get_tags()
 
-    return render_template('home.html', articles=articles)
+    title = " All Articles"
+    return render_template('home.html', articles=articles, title=title, sources=sources, tags=tags)
 
 
 @app.route('/headlines')
@@ -28,18 +31,26 @@ def articles():
 def sources():
     newsSource = get_news_source()
 
+
     return render_template('sources.html', newsSource=newsSource)
 
 
-@app.route('/category/<tag>')
-def business(tag):
-    sources = topHeadlines(tag)
+@app.route('/tags/<tag>')
+def articles_by_filter_tag(tag):
 
-    return render_template('category.html', sources=sources)
+    articles = generate_article_templates(1000, tag=tag)
+    sources = get_news_source()
+    tags = get_tags()
+
+    title = f"Filtered by Tag: {tag}"
+    return render_template('home.html', articles=articles, title=title, sources=sources, tags=tags)
 
 
 @app.route('/article/<article_id>')
 def article(article_id):
-    news_article = get_article(article_id)
 
-    return render_template('article.html', article=news_article)
+    print('yoooooooo')
+    article = get_article_from_db(article_id)
+
+
+    return render_template('article.html', article=article)

@@ -25,5 +25,5 @@ SQL_HOST = '127.0.0.1'  # self-host
 SQL_PORT = int(3306)
 SQL_DB = 'news'
 SQL_USERNAME = 'root'
-SQL_PASSWORD = 'example'
+SQL_PASSWORD = 'password'
 SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{SQL_USERNAME}:{SQL_PASSWORD}@{SQL_HOST}:{SQL_PORT}/{SQL_DB}?charset=utf8mb4"

@@ -36,7 +36,7 @@ class Article(db.Model):
     art_tags = relationship(
         "Tag",
         secondary=article_tag_association,
-        back_populates='articles'
+        # back_populates='articles'
         # primaryjoin=id == Article_Tag.c.article_id,
         # secondaryjoin=Tag.id == Article_Tag.c.tag_id
     )
@@ -50,7 +50,7 @@ class Tag(db.Model):
     tag_arts = relationship(
         "Article",
         secondary=article_tag_association,
-        back_populates='tags'
+        # back_populates='tags'
         # primaryjoin=id == Article_Tag.c.tag_id
     )
 

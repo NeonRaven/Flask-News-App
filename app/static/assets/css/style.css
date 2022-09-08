@@ -31,6 +31,18 @@ a:hover {
     background-color: #000;
 } 
 
+a:link {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+input[type=text] {
+  background-color: #white;
+  color: white;
+}
+
 .navbar.navbar-dark .nav-item .nav-link:hover { 
     color: #fff!important; 
     background-color: #000;

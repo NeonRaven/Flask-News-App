@@ -54,7 +54,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {% for source in sources %}
-                              <a class="dropdown-item" href="/source/{{ source }}">{{ source }}</a>
+                              <a class="dropdown-item" href="/sources/{{ source.id }}">{{ source.name }}</a>
                             {% endfor %}
                         </div>
                     </li>

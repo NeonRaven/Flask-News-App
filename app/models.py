@@ -108,9 +108,18 @@ def create_test_data():
         p_date="2022-11-11 11:11:11",
         content="It was I",
         pub_id=1,
-        tag_id=1
+
+#        tag_id=1
     )
+
+    tgs =[]
+    tgs.append( Tag.query.filter_by(id=1).first())
+    tgs.append( Tag.query.filter_by(id=2).first())
+    new_story.art_tags = tgs
+
     db.session.add(new_story)
+
+
 
     """
     a1 = sqlalchemy.insert(Article_Tag).values(tag_id=1, article_id=1)

@@ -69,6 +69,10 @@ class Publisher(db.Model):
     __tablename__ = 'publisher'
     id = db.Column(db.Integer, primary_key=True)
     publisher = db.Column(db.String(512), nullable=True)
+    country = db.Column(db.String(512), nullable=True)
+    about = db.Column(db.String(512), nullable=True)
+    logo_path = db.Column(db.String(512), nullable=True)
+    tweeter_handle = db.Column(db.String(512), nullable=True)
 
 
 '''
@@ -85,10 +89,62 @@ db.session.commit()
 
 
 def create_test_data():
-    pb = Publisher(publisher="News R Us")
+
+    #neutrals
+    pb = Publisher(publisher="Global Association of Journalists (GAJ)",
+                   about="Global Association of Journalists (GAJ) is a global consortium of journalists. It is not country-specific and aims for a neutral tone.",
+                   tweeter_handle='GAJ'
+                   )
     db.session.add(pb)
-    entry = Publisher(publisher="The Gradient")
+
+    pb = Publisher(publisher="Humfeed News",
+                   about="For celebrity gossip, information, and tech!",
+                   tweeter_handle='humfeed'
+                   )
+    db.session.add(pb)
+
+    #kam
+    entry = Publisher(publisher="Kamarian Daily News",
+                      about="Kamarian Daily News is an excellent news source, focused on the bigger picture.",
+                      country="kam",
+                      tweeter_handle='KamDaily'
+                      )
+
     db.session.add(entry)
+
+    entry2 = Publisher(publisher="Kamabart",
+                      about="Kamabart. We know the actual truth",
+                      country="kam",
+                      tweeter_handle='Kamabart')
+    db.session.add(entry2)
+
+
+    #li
+    entry3 = Publisher(publisher="The Longie Way",
+                      about="The Longie Way, Longway Island's Daily Source of Truth.",
+                      country="li",
+                      tweeter_handle='LongieWay')
+    db.session.add(entry3)
+
+    entry4 = Publisher(publisher="LIBC",
+                      about="Longway Island Broadcasting Corporation).",
+                      country="li",
+                      tweeter_handle='LIBC')
+    db.session.add(entry4)
+
+    entry5 = Publisher(publisher="The National Viewpoint",
+                      about="The National Viewpoint. Australian. Balanced. Opinionated.",
+                      country="au",
+                      tweeter_handle='NatView')
+    db.session.add(entry5)
+
+    entry6 = Publisher(publisher="The Australian Post",
+                      about="The Australian Post - Australia's largest trusted news source",
+                      country="au",
+                      tweeter_handle='AUSPost')
+    db.session.add(entry6)
+
+
 
     taglist = ['Weather', 'News', 'Science', 'Technology',
                'History', 'Places', 'Entertainment', 'Health', 'Military',

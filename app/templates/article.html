@@ -26,9 +26,17 @@
 
         <br>
             <p>{{ article.p_date }}</p>
-            <p>{{ article.tag }}</p>
+            <p>{{ article.author }}</p>
 
+                        <p class="card-text published"><path d="M11 9h2v5h-2zM9 2h6v2H9zm10.293 5.707-2-2 1.414-1.414 2 2z" ></path> Tag:
 
+            {% for tgs in article.art_tags %}
+                <a href="/tags/{{ tgs }}">{{ tgs }}</a>
+            {% endfor %}
+
+                        </p>
+
+                        <p class="card-text published"> Publisher: <a href="/sources/{{ article.pub_id }}">{{ article.source }}</a> </p>
 
             <br>
 
@@ -46,6 +54,9 @@
 
         <p>{{ article.content }}</p>
     </div>
+
+
+
 
     </div>
 

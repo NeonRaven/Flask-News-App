@@ -163,6 +163,21 @@ def get_news_source():
         pubs.append(pb)
     return pubs
 
+def get_news_source_by_country(country):
+    '''
+    Function that gets the json response to our url request
+    '''
+    publishers = Publisher.query.filter_by(country=country).all()
+    pubs = []
+    for pub in publishers:
+        pb = {}
+        pb['name'] = pub.publisher
+        pb['id'] = pub.id
+        pubs.append(pb)
+    return pubs
+
+
+
 
 def get_tags():
     '''

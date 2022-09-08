@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, redirect, flash, abort, Response
-from .request import get_news_source, publishedArticles, get_article, generate_article_templates, get_tags, get_article_from_db, get_source_name_from_source_id, allowed_file, get_tag_detailed, create_article
+from .request import get_news_source, publishedArticles, get_article, generate_article_templates, get_tags, get_article_from_db, get_source_name_from_source_id, allowed_file, get_tag_detailed, create_article, get_news_source_by_country
 import os
 from werkzeug.utils import secure_filename
 from uuid import uuid4
@@ -84,38 +84,15 @@ def failure():
     print('failure?')
     return render_template('post_failure.html')
 
-
-
-@app.route('/new/', methods=['GET'])
-def new_story():
-    sources = get_news_source()
-    print('i am tags')
-    tags = get_tag_detailed()
-    print(tags)
-
-    return render_template('home2.html', allowed_pubs=sources, tags=tags)
-
 @app.route('/new_story/', methods=['POST', 'GET'])
 def upload_file():
     if request.method == 'POST':
-        print('i am a post')
-        print(request.form)
-        print(request.files)
 
         if 'title' in request.form and 'desc' in request.form and 'author' in request.form and 'content' in request.form:
             if len(request.form['title'])>0 and len(request.form['desc'])>0 and len(request.form['author'])>0 and len(request.form['content'])>0:
-                print(request.form['title'])
-                print(len(request.form['title']))
-                print(request.form['desc'])
-                print(request.form['author'])
-                print(request.form['content'])
-                print(request.form['publisher'])
-
                 tags = None
                 if 'tags' in request.form:
                     tags = request.form.getlist('tags')
-
-
 
                 # check if the post request has the file part
                 if 'file' not in request.files:
@@ -124,7 +101,6 @@ def upload_file():
                     return redirect('/failure/')
 
                 file = request.files['file']
-                print('we have file')
                 if file.filename == '':
                     flash('No selected image')
 #                    return redirect(request.url)
@@ -165,9 +141,31 @@ def upload_file():
         return resp
 
     else:
-        print(f'request:{request.method}')
         flash('Something Weird Happened!')
 #        return redirect(request.url)
         return redirect('/failure/')
 
+#
+# specific country portals
+#
+@app.route('/kamarian-news-portal/', methods=['GET'])
+def new_story_kam():
+    allow_pub = get_news_source_by_country('kam')
 
+    tags = get_tag_detailed()
+    return render_template('home2.html', allowed_pubs=allow_pub, tags=tags)
+
+
+@app.route('/australian-news-submissions/', methods=['GET'])
+def new_story_aus():
+    allow_pub = get_news_source_by_country('au')
+
+    tags = get_tag_detailed()
+    return render_template('home2.html', allowed_pubs=allow_pub, tags=tags)
+
+
+@app.route('/excon-new-story/', methods=['GET'])
+def new_story():
+    sources = get_news_source()
+    tags = get_tag_detailed()
+    return render_template('home2.html', allowed_pubs=sources, tags=tags)

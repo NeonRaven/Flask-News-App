@@ -164,6 +164,14 @@ def new_story_aus():
     return render_template('home2.html', allowed_pubs=allow_pub, tags=tags)
 
 
+@app.route('/longway-island-news/', methods=['GET'])
+def new_story_aus():
+    allow_pub = get_news_source_by_country('li')
+    tags = get_tag_detailed()
+    return render_template('home2.html', allowed_pubs=allow_pub, tags=tags)
+
+
+
 @app.route('/excon-new-story/', methods=['GET'])
 def new_story():
     sources = get_news_source()
